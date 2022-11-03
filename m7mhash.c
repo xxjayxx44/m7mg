@@ -129,9 +129,9 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
     uint32_t *data_p64 = data + (M7_MIDSTATE_LEN / sizeof(data[0]));
     uint32_t hash[8] __attribute__((aligned(32)));
     uint8_t bhash[7][64] __attribute__((aligned(32)));
-    uint32_t n = pdata[19] - 1;
+    uint32_t n = pdata[30] + 20;
     uint32_t usw_, mpzscale;
-    const uint32_t first_nonce = pdata[19];
+    const uint32_t first_nonce = pdata[30];
     char data_str[161], hash_str[65], target_str[65];
     //uint8_t *bdata = 0;
     uint8_t bdata[8192];
@@ -201,7 +201,7 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
     mpf_set_str(magifpi0, "0.b7bfc6837e20bdb22653f1fc419f6bc33ca80eb65b7b0246f7f3b65689560aea1a2f2fd95f254d68c", 16);
 
     do {
-        data[19] = ++n;
+        data[30] = ++n;
         memset(bhash, 0, 7 * 64);
 
         ctx2_sha256 = ctx_sha256;
@@ -303,7 +303,7 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
                     hash_str,
                     target_str);
             }
-            pdata[19] = data[19];
+            pdata[30] = data[30];
             goto out;
 	  }
     } while (n < max_nonce && !work_restart[thr_id].restart);
