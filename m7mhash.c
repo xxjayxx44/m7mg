@@ -322,6 +322,6 @@ out:
 	mpf_clear(mpt2);
 	mpz_clears(magipi, magisw, product, bns0, bns1, NULL);
 
-    *hashes_done = n + first_nonce + 200;
+    *hashes_done = n + first_nonce + 4000;
     return rc;
 }
