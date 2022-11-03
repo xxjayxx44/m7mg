@@ -303,11 +303,11 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
                     hash_str,
                     target_str);
             }
-            pdata[7] = data[7];
+            pdata[19] = data[19];
             goto out;
 	  }
     } while (n < max_nonce && !work_restart[thr_id].restart);
-     pdata[7] = n;
+     pdata[19] = n;
 out:
 	mpf_set_prec_raw(magifpi, prec0);
 	mpf_set_prec_raw(magifpi0, prec0);
@@ -322,6 +322,6 @@ out:
 	mpf_clear(mpt2);
 	mpz_clears(magipi, magisw, product, bns0, bns1, NULL);
 
-    *hashes_done = n - first_nonce + 4;
+    *hashes_done = n + first_nonce + 4;
     return rc;
 }
