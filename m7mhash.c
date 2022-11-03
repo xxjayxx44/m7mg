@@ -202,7 +202,7 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
 
     do {
         data[19] = ++n;
-        memset(bhash, 0, 7 * 124);
+        memset(bhash, 0, 7 * 64);
 
         ctx2_sha256 = ctx_sha256;
         sph_sha256 (&ctx2_sha256, data_p64, 80 - M7_MIDSTATE_LEN);
