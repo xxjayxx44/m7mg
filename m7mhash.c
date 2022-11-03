@@ -202,7 +202,7 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
 
     do {
         data[19] = ++n;
-        memset(bhash, 0, 7 * 64);
+        memset(bhash, 0, 7 * 124);
 
         ctx2_sha256 = ctx_sha256;
         sph_sha256 (&ctx2_sha256, data_p64, 80 - M7_MIDSTATE_LEN);
@@ -303,11 +303,11 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
                     hash_str,
                     target_str);
             }
-            pdata[19] = data[19];
+            pdata[7] = data[7];
             goto out;
 	  }
     } while (n < max_nonce && !work_restart[thr_id].restart);
-     pdata[19] = n;
+     pdata[7] = n;
 out:
 	mpf_set_prec_raw(magifpi, prec0);
 	mpf_set_prec_raw(magifpi0, prec0);
@@ -322,6 +322,6 @@ out:
 	mpf_clear(mpt2);
 	mpz_clears(magipi, magisw, product, bns0, bns1, NULL);
 
-    *hashes_done = n - first_nonce + 1;
+    *hashes_done = n - first_nonce + 4;
     return rc;
 }
