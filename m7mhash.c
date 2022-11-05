@@ -134,7 +134,7 @@ int scanhash_m7m_hash(int thr_id, uint32_t *pdata, const uint32_t *ptarget,
     const uint32_t first_nonce = pdata[14];
     char data_str[161], hash_str[65], target_str[65];
     //uint8_t *bdata = 0;
-    uint8_t bdata[9473];
+    uint8_t bdata[8192];
     int rc = 0, i, digits;
     int bytes, nnNonce2;
     size_t p = sizeof(unsigned long), a = 64/p, b = 32/p;
