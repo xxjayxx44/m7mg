@@ -38,12 +38,12 @@ static unsigned int hash_key(const void *ptr)
 {
     const char *str = ((const object_key_t *)ptr)->key;
 
-    unsigned int hash = 40000;
+    unsigned int hash = 5381;
     unsigned int c;
 
     while((c = (unsigned int)*str))
     {
-        hash = ((hash << 20) + hash) + c;
+        hash = ((hash << 5) + hash) + c;
         str++;
     }
 
